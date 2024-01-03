@@ -1,3 +1,5 @@
+const filter = document.querySelector('#filter');
+
 // Função para carregar os links nos iframes
 function carregarLinks(list) {
   const container = document.getElementById('iframeContainer');
@@ -50,6 +52,17 @@ document.getElementById('extractButton').addEventListener('click', function () {
 const divLinksList = document.querySelector('.links-list');
 
 const montarDivsLinks = (links) => {
+  if (filter.value.length > 0) {
+    // Percorre a lista de trás para frente para evitar problemas ao remover itens
+    for (let i = links.length - 1; i >= 0; i--) {
+      // Verifica se o item NÃO contém a string informada
+      if (!links[i].includes(filter.value)) {
+        // Remove o item da lista usando splice
+        links.splice(i, 1);
+      }
+    }
+  }
+
   links.forEach((link) => {
     const fixYoutubeLink = link.replace(
       'www.youtube.com/watch?v=',
@@ -99,6 +112,7 @@ const openLink = (div, link) => {
 
   const button = div.querySelector('button');
   button.innerHTML = 'Fechar';
+  button.style.backgroundColor = '#7ad9b0';
 
   div.appendChild(iframeContainer);
   div.setAttribute('data-isopen', '1');
