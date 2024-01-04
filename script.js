@@ -112,7 +112,6 @@ const openLink = (div, link) => {
 
   const button = div.querySelector('button');
   button.innerHTML = 'Fechar';
-  button.style.backgroundColor = '#7ad9b0';
 
   div.appendChild(iframeContainer);
   div.setAttribute('data-isopen', '1');
@@ -125,6 +124,7 @@ const closeLink = (div, link) => {
   // div.classList.add('link-container');
   label.classList.add('link');
   button.classList.add('open-button');
+  button.style.backgroundColor = '#62c581';
 
   label.innerHTML = link;
   button.innerHTML = 'Abrir';
